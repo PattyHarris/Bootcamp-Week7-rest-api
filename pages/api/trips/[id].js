@@ -18,12 +18,13 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'PUT') {
-
+        return;
     }
 
     if (req.method === 'DELETE') {
-
+        return;
     }
 
+    res.status(404).json({ message: 'Method Not Allowed' });
 
 }

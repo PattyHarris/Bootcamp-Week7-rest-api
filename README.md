@@ -16,7 +16,7 @@ npx create-next-app@latest --use-npm  rest-api
 > npm run dev --verbose
 ```
 
-4. Postman: To test the 'post' that should fail at this point, set the method to 'post' and use 'raw' as the body content type.  Don't forget that the endpoint is http://localhost:3000/api/trips
+4. Postman: To test the 'post' that should fail at this point, set the method to 'post' and use 'raw' as the body content type and select JSON.  Don't forget that the endpoint is http://localhost:3000/api/trips
 
 5. Install Prisma:
 ```
@@ -34,3 +34,12 @@ Setup the railway database (trips-expenses) and using that connect query, update
 
 8. Handle requests that have an ID attached, e.g. GET http://localhost:3000/api/trips/1
 "We’re going to access this API using the URL http://localhost:3000/api/trips/1 where 1 is the id of the trip, because we called the file [id].js."  In this file, we'll also handle PUT and DELETE.
+
+8. Back to index.js: POST http://localhost:3000/api/trips with the body as (using Postman):
+```
+{
+    "user": 1,
+    "name": 'Third Trip'
+}
+```
+And the reason this is done in index.js and not [id].js is that we don't know that ID of request until it's created (duh!).
