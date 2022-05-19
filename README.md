@@ -31,3 +31,6 @@ Setup the railway database (trips-expenses) and using that connect query, update
 >npx --use-npm prisma migrate dev
 ```
 7. Setup the prisma client in the lib/prisma.js file.
+
+8. Handle requests that have an ID attached, e.g. GET http://localhost:3000/api/trips/1
+"We’re going to access this API using the URL http://localhost:3000/api/trips/1 where 1 is the id of the trip, because we called the file [id].js."  In this file, we'll also handle PUT and DELETE.
