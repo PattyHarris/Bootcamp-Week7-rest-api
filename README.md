@@ -43,3 +43,23 @@ Setup the railway database (trips-expenses) and using that connect query, update
 }
 ```
 And the reason this is done in index.js and not [id].js is that we don't know that ID of request until it's created (duh!).
+
+9. Implement POST /expenses and GET /expenses/:id.  Updated the schema with the Expense model (you will need to restart the app afterwards).  The schema is migrated to the database:
+```
+> npx --use-npm prisma migrate dev
+```
+
+10. In index.js (in the expense folder), handle POST as we did with trips.
+
+11. Test in Postman:  POST http://localhost:3000/api/expense
+```
+{
+    "trip": 1,
+    "name": "Gasoline",
+    "amount": 50,
+    "currency": "USD"
+}
+```
+Then to access the new record: http://localhost:3000/api/expenses/1 where '1' is the ID of the expense.
+
+12. Add the list of expenses of a trip to GET /trips/:id - for each trip, find the expenses and add that to the response.  As noted in the tutorial, this does mean that we can't just return all trips without their expenses - that would need to be another endpoint.

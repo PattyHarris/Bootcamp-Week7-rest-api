@@ -11,6 +11,21 @@ export default async function handler(req, res) {
     
     if (req.method === 'GET') {
         const trips = await prisma.trip.findMany();
+
+        // For each trip, return the expenses for that trip.  This does
+        // eliminate the ability to just return all trips - that could be added as
+        // another endpoint.
+        
+        await Promise.all(
+            trips.map(async (trip) => {
+
+                trip.expenses = await prisma.expense.findMany({
+                    where: {
+                        trip: trip.id,
+                    },
+                })
+            })
+        )
         res.status(200).json(trips);        
         
         return;
@@ -19,7 +34,6 @@ export default async function handler(req, res) {
     if (req.method === 'POST') {
         
         const {user, name, start_date, end_date} = req.body;
-        console.log(req.body);
 
         if (!user) {
             return handleMissingData(res, 'user');
