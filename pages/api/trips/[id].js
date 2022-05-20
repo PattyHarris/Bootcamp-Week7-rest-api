@@ -18,7 +18,21 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'PUT') {
-        return;
+
+        const { user, name, start_date, end_date } = req.body;
+
+        await prisma.trip.update({
+            data: {
+                user,
+                name,
+                start_date, 
+                end_date,
+            },
+            where: {
+                id: parseInt(req.query.id)
+            }
+        })
+        return res.status(200).end();
     }
 
     if (req.method === 'DELETE') {

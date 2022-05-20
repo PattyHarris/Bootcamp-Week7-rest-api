@@ -63,3 +63,5 @@ And the reason this is done in index.js and not [id].js is that we don't know th
 Then to access the new record: http://localhost:3000/api/expenses/1 where '1' is the ID of the expense.
 
 12. Add the list of expenses of a trip to GET /trips/:id - for each trip, find the expenses and add that to the response.  As noted in the tutorial, this does mean that we can't just return all trips without their expenses - that would need to be another endpoint.
+
+13. Implement PUT /trips/:id and PUT /expenses/:id to allow editing - notice that these changes were made in the [id].js files.
